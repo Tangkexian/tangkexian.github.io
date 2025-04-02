@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="LEGO-Puzzles: How Good Are MLLMs at Multi-Step Spatial Reasoning?">
+  <meta name="keywords" content="Human Preference Alignment, Multimodal Large Language Model, Visual Understanding">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LEGO-Puzzles: How Good Are MLLMs at Multi-Step Spatial Reasoning?</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script> -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- <script defer src="./static/js/fontawesome.js"></script> -->
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">LEGO-Puzzles: How Good Are MLLMs at Multi-Step Spatial Reasoning?</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=cXjomd8AAAAJ&hl=zh-CN&oi=ao"> Kexian Tang</a><sup>1,2*</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://jeoyal.github.io/home/">Junyao Gao</a><sup>1,2*</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://zengyh1900.github.io">Yanhong Zeng</a><sup>1†</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://kennymckormick.github.io/">Haodong Duan</a><sup>1†</sup>,
+            </span>
+            <br>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=6TA1oPkAAAAJ&hl=zh-CN&oi=ao">Yanan Sun</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?hl=zh-CN&user=sVYO0GYAAAAJ">Zhening Xing</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?hl=zh-CN&user=fwKOaD8AAAAJ">Wenran Liu</a><sup>1</sup>
+            </span>
+            <span class="author-block">
+              <a href="https://kaifeng.ac/cn/">Kaifeng Lyu</a><sup>3‡</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://chenkai.site/">Kai Chen</a><sup>1‡</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Shanghai AI Laboratory</span>
+            <span class="author-block"><sup>2</sup>Tongji University</span>
+            <span class="author-block"><sup>3</sup>Simons Institute, UC Berkeley</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- Paper Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2503.19990"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/PhoenixZ810/OmniAlign-V"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/PhoenixZ/OmniAlign-V"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fa fa-download"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href="https://huggingface.co/datasets/PhoenixZ/OmniAlign-V-DPO"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fa fa-download"></i>
+                  </span>
+                  <span>DPO Data</span>
+                  </a>
+              </span>
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/PhoenixZ/MM-AlignBench"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fa fa-key"></i>
+                  </span>
+                  <span>Bench</span>
+                  </a>
+              </span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Paper video. -->
+
+<!-- <section class="hero body">
+  <div class="columns is-centered has-text-centered"  style="margin-top: -50px; margin-bottom: 10px;">
+    <div class="column is-three-fifths">
+      <p class="title is-4">LEGO-Puzzles Dataset</p> -->
+      <!-- <h2 class="title is-3 is-centered">LGVI Framework</h2> -->
+      <!-- <div class="publication-img">
+        <img id="architecture" src="./static/images/teaser.png" style="width:1400px; margin-top:-10px;margin-bottom:-10px;"/>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<!-- <section class="hero is-small">
+  <div class="columns is-centered has-text-centered"  style="margin-top: -10px; margin-bottom: 20px;">
+    <div class="column is-three-fifths">
+      <div class="publication-video">
+        <iframe width="200" height="180" src="https://www.youtube.com/embed/WI-65Jk0j50?si=EkA2vVDoxN8Wh3jP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+
+<!-- Abstract. -->
+<section class="hero is-light">
+  <div class="container is-max-desktop ">
+    <div class="columns is-centered has-text-centered" style="margin-top: 10px; margin-bottom: 0px;">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            <strong>Multi-step spatial reasoning</strong> entails understanding and reasoning about spatial relationships across multiple sequential steps, which is crucial for tackling complex real-world applications, such as robotic manipulation, autonomous navigation, and automated assembly. To assess how well current Multimodal Large Language Models (MLLMs) have acquired this fundamental capability, we introduce <strong>LEGO-Puzzles</strong>, a scalable benchmark designed to evaluate both <strong>spatial understanding</strong> and <strong>sequential reasoning</strong> in MLLMs through LEGO-based tasks. LEGO-Puzzles consists of 1,100 carefully curated visual question-answering (VQA) samples spanning 11 distinct tasks, ranging from basic spatial understanding to complex multi-step reasoning. Based on LEGO-Puzzles, we conduct a comprehensive evaluation of state-of-the-art MLLMs and uncover significant limitations in their spatial reasoning capabilities: even the most powerful MLLMs can answer only about half of the test cases, whereas human participants achieve over 90% accuracy. In addition to VQA tasks, we evaluate MLLMs' abilities to generate LEGO images following assembly illustrations. Our experiments show that only Gemini-2.0-Flash and GPT-4o exhibit a limited ability to follow these instructions, while other MLLMs either replicate the input image or generate completely irrelevant outputs. Overall, LEGO-Puzzles exposes critical deficiencies in existing MLLMs' spatial understanding and sequential reasoning capabilities, and underscores the need for further advancements in multimodal spatial reasoning.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /Abstract. -->
+
+<!-- Method. -->
+<section class="section" style="margin-top:-50px; margin-bottom:-50px;">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+        <div class="columns is-centered has-text-centered">
+          <div class="column">
+            <h2 class="title is-3 is-centered">LEGO-Puzzles Dataset</h2>
+            <div class="publication-img">
+              <img id="architecture" src="./static/images/teaser.png" style="width:1000px; margin-top:10px;margin-bottom:10px;"/>
+            </div>
+          </div>
+        </div>
+        <p>
+          <strong>Task examples of LEGO-Puzzles.</strong> From left to right, the columns represent tasks in Spatial Understanding, Single-Step Sequential Reasoning, and Multi-Step Sequential Reasoning. Note: The questions above are slightly simplified for clarity and brevity.
+        </p>
+    </div>
+  </div>
+</section>
+<!-- Method  -->
+
+<!-- Results -->
+
+<!-- <section>
+  <div class="container is-max-desktop" style="margin-top:-100px; margin-bottom:-50px;">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3 is-centered">Results Visualization</h2>
+        </div>
+      </div>
+      <video id="result-comparison" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/result-comparison-both1.mp4" type="video/mp4">
+      </video>
+      <video id="result-comparison" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/result-comparison-both2.mp4" type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        MotionBooth compared with baseline models for motion-aware customized video generation.
+      </h2>
+    </div>
+  </div>
+</section> -->
+
+<section>
+  <div class="container is-max-desktop" style="margin-top:-50px; margin-bottom:-50px;">
+    <div class="hero-body">      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Dataset & Benchmark</h2>
+          <div class="publication-img">
+            <img id="architecture" src="./static/images/statistic.png" style="width:1000px; margin-top:10px;margin-bottom:10px;"/>
+          </div>
+        </div>
+      </div>
+      <h2 class="subtitle has-text-centered">
+        Statistics of OmniAlign-V dataset and samples in MM-AlignBench.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="container is-max-desktop" style="margin-top:-50px; margin-bottom:-50px;">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="publication-img">
+            <img id="architecture" src="./static/images/main_results.png" style="width:1000px; margin-top:10px;margin-bottom:10px;"/>
+          </div>
+        </div>
+      </div>
+      <p>
+        Table 1. <strong><u>Full Evaluation Results of 18 MLLMs on LEGO-Puzzles.</u></strong>
+        <span style="background-color: #888888;">Dark Gray</span>
+        indicates the best performance for each task among all models and
+        <span style="background-color: #dddddd;">Light Gray</span>
+        indicates the best result among open-source model. We also highlight the top three models based on their overall
+        performance, using
+        <span style="background-color: #00FF00;">Dark Green</span>,
+        <span style="background-color: #99FF99;">Medium Green</span>,
+        and
+        <span style="background-color: #ccffcc;">Light Green</span>, respectively.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container is-max-desktop" style="margin-top:-50px; margin-bottom:-50px;">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="publication-img">
+            <img id="architecture" src="./static/images/LEGO-Puzzles-Lite_results.png" style="width:1000px; margin-top:10px;margin-bottom:10px;"/>
+          </div>
+        </div>
+      </div>
+      <p>
+        Table 2. <strong><u>Comparing Top-Performing MLLMs with Human Proficiency on LEGO-Puzzles-Lite.</u></strong>
+        The best results are marked in <strong>bold</strong>.
+        The top three overall performances are highlighted in
+        <span style="background-color: #00FF00;">Dark Green</span>,
+        <span style="background-color: #99FF99;">Medium Green</span>,
+        and
+        <span style="background-color: #ccffcc;">Light Green</span>, respectively.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container is-max-desktop" style="margin-top:-50px; margin-bottom:-50px;">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="publication-img">
+            <img id="architecture" src="./static/images/Generation_results.png"
+              style="width:1000px; margin-top:10px;margin-bottom:10px;" />
+          </div>
+        </div>
+      </div>
+      <p>
+        <strong>Table 3. <u>Evaluation on <em>Generation</em>.</u></strong>
+        We conduct human-based evaluation to assess the “Appearance” (App) and “Instruction Following” (IF) scores of
+        Gemini-2.0-Flash, GPT-4o, Emu2, GILL, and Anole, using a scoring scale from 0 to 3 for both dimensions.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container is-max-desktop" style="margin-top:-50px; margin-bottom:-50px;">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="publication-img">
+            <img id="architecture" src="./static/images/next-k-step_results.png"
+              style="width:1000px; margin-top:10px;margin-bottom:10px;" />
+          </div>
+        </div>
+      </div>
+      <p>
+        <strong>Table 4. <u>Evaluation on <em>Next-k-Step</em>.</u></strong>
+        <em>k</em> represents the number of steps, and CoT refers to adding a “Think step by step before answering”
+        instruction in QA pairs, similar to those in LLMs.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section>
+  <div class="container is-max-desktop" style="margin-top:-50px; margin-bottom:-50px;">
+    <div class="hero-body">      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Samples</h2>
+          <!-- <div class="publication-img">
+            <img id="architecture" src="./static/images/datasample.png" style="width:500px; margin-top:10px;margin-bottom:10px;"/>
+          </div>
+          <div class="publication-img">
+            <img id="architecture" src="./static/images/datasample2.png" style="width:510px; margin-top:10px;margin-bottom:10px;"/>
+          </div>
+          <div class="publication-img">
+            <img id="architecture" src="./static/images/datasample3.png" style="width:550px; margin-top:10px;margin-bottom:10px;"/>
+          </div>
+          <div class="publication-img">
+            <img id="architecture" src="./static/images/datasample4.png" style="width:500px; margin-top:10px;margin-bottom:10px;"/>
+          </div> -->
+          <div class="image-grid">
+            <div class="image-item">
+              <img src="./static/images/sample1.png" alt="Sample 1" style="width: 100%; margin-top: 10px; margin-bottom: 10px;" />
+            </div>
+            <div class="image-item">
+              <img src="./static/images/sample2.png" alt="Sample 2" style="width: 100%; margin-top: 10px; margin-bottom: 10px;" />
+            </div>
+            <!-- <div class="image-item">
+              <img src="./static/images/datasample3.png" alt="Sample 3" style="width: 100%; margin-top: 10px; margin-bottom: 10px;" />
+            </div> -->
+            <!-- <div class="image-item">
+              <img src="./static/images/datasample4.png" alt="Sample 4" style="width: 100%; margin-top: 10px; margin-bottom: 10px;" />
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <h2 class="subtitle has-text-centered">
+        Samples of tasks in LEGO-Puzzles dataset.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- 添加自定义样式 -->
+<!-- 添加自定义样式 -->
+<style>
+  /* Grid 布局 */
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 每行两个 */
+    gap: 20px; /* 图片之间的间距 */
+  }
+
+  /* 避免裁剪，保持图片比例 */
+  .image-item img {
+    width: 100%; /* 宽度占满父容器 */
+    height: auto; /* 高度自动调整，保持比例 */
+    display: block; /* 防止底部出现空白间隙 */
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+</style>
+<!-- /Results -->
+
+<!-- BibTeX -->
+<!-- <section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{mgllava,
+        title={Towards Semantic Equivalence of Tokenization in Multimodal LLM},
+        author={Zhao, Xiangyu and Li, Xiangtai and Duan, Haodong and Huang, Haian and Li, Yining and Chen, Kai and Yang, Hua},
+        journal={arXiv preprint},
+        year={2024}
+    }</code></pre>
+  </div>
+</section> -->
+<!-- /BibTeX -->
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website source code based on the <a href="https://nerfies.github.io/"> Nerfies</a> project page. Thanks for their excellent work.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
