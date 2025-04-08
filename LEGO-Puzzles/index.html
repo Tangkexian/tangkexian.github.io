@@ -158,6 +158,12 @@
         <div class="columns is-centered has-text-centered">
           <div class="column">
             <h2 class="title is-3 is-centered">LEGO-Puzzles Dataset</h2>
+            <div class="content has-text-justified">
+              <p>
+                To comprehensively assess multi-step spatial reasoning in MLLMs, we design <strong>LEGO-Puzzles</strong>, a new benchmark built upon LEGO assembly tasks. Inspired by how humans develop spatial skills through construction processes, we categorize our tasks into three levels: <strong>spatial understanding</strong>, <strong>single-step sequential reasoning</strong>, and <strong>multi-step sequential reasoning</strong>.
+              </p>
+            </div>
+            
             <div class="publication-img">
               <img id="architecture" src="./static/images/teaser.png" style="width:1000px; margin-top:10px;margin-bottom:10px;"/>
             </div>
@@ -175,16 +181,22 @@
 
 <section>
   <div class="container is-max-desktop" style="margin-top:-50px; margin-bottom:-50px;">
-    <div class="hero-body">      <div class="columns is-centered has-text-centered">
+    <div class="hero-body">     
+      <div class="columns is-centered has-text-centered">
         <div class="column">
           <h2 class="title is-3">Dataset & Benchmark</h2>
+          <div class="content has-text-justified">
+            <p>
+              LEGO-Puzzles contains over <strong>1,100 visual question-answering samples across 11 tasks</strong>. These tasks are evenly distributed across spatial understanding (36.4%), single-step sequential reasoning (36.4%), and multi-step sequential reasoning (27.3%).
+            </p>
+          </div>
           <div class="publication-img">
             <img id="architecture" src="./static/images/statistic.png" style="width:1000px; margin-top:10px;margin-bottom:10px;"/>
           </div>
         </div>
       </div>
       <h2 class="subtitle has-text-centered">
-        Statistics of OmniAlign-V dataset and samples in MM-AlignBench.
+        Statistics of LEGO-Puzzles.
       </h2>
     </div>
   </div>
@@ -196,6 +208,12 @@
     <div class="hero-body">
       <div class="columns is-centered has-text-centered">
         <div class="column">
+          <h2 class="title is-3">Main Evaluation Results</h2>
+          <div class="content has-text-justified">
+            <p>
+              We evaluate <strong>20 state-of-the-art MLLMs</strong>, including both proprietary and open-source models, across all LEGO-Puzzles tasks. The table below summarizes the performance of these models on spatial understanding, single-step reasoning, and multi-step reasoning tasks. Despite recent advances, most models exhibit significant limitations in reasoning performance, especially when handling spatial rotations, 3D adjacency, or multi-step assembly sequences.
+            </p>
+          </div>
           <div class="publication-img">
             <img id="architecture" src="./static/images/main_results.png" style="width:1000px; margin-top:10px;margin-bottom:10px;"/>
           </div>
@@ -222,6 +240,12 @@
     <div class="hero-body">
       <div class="columns is-centered has-text-centered">
         <div class="column">
+          <h2 class="title is-3">Human vs Model Performance</h2>
+          <div class="content has-text-justified">
+            <p>
+              To further explore the performance gap between humans and MLLMs, we introduce <strong>LEGO-Puzzles-Lite</strong>, a compact subset of the full benchmark with 220 carefully selected samples (20 per task). The following table compares the performance of top-performing MLLMs against human annotators. While humans achieve near-perfect accuracy, even the best models lag significantly, highlighting the challenges MLLMs face in visual and spatial reasoning.
+            </p>
+          </div>
           <div class="publication-img">
             <img id="architecture" src="./static/images/LEGO-Puzzles-Lite_results.png" style="width:1000px; margin-top:10px;margin-bottom:10px;"/>
           </div>
@@ -245,6 +269,17 @@
     <div class="hero-body">
       <div class="columns is-centered has-text-centered">
         <div class="column">
+          <h2 class="title is-3">Image Generation Results</h2>
+          <div class="content has-text-justified">
+            <p>
+              In addition to question-answering, LEGO-Puzzles also incorporates <strong>image generation tasks</strong> to evaluate whether MLLMs can visually interpret and simulate spatial transformations. We design <strong>5 generation tasks</strong> across two main categories: spatial understanding (<em>Rotation*</em>, <em>Multiview*</em>) and single-step sequential reasoning (<em>Position*</em>, <em>Dependency*</em>, <em>Next-Step*</em>). Each task consists of 20 questions, resulting in a total of 100 generation questions. Models are expected to generate an image of the intermediate LEGO configuration that reflects the given instruction. Because standard automated metrics fail to assess spatial fidelity and reasoning consistency, we rely on human evaluation to rate two aspects: <strong>appearance similarity</strong> and <strong>instruction following</strong>.
+            </p>
+            <p>
+              Only Gemini-2.0-Flash and GPT-4o show limited success, with most open-source models failing entirely to follow
+              instructions or preserve structural identity. This reveals critical limitations in spatially grounded image synthesis
+              within current MLLMs.
+            </p>
+          </div>
           <div class="publication-img">
             <img id="architecture" src="./static/images/Generation_results.png"
               style="width:1000px; margin-top:10px;margin-bottom:10px;" />
@@ -265,6 +300,13 @@
     <div class="hero-body">
       <div class="columns is-centered has-text-centered">
         <div class="column">
+          <h2 class="title is-3">Multi-Step Reasoning via Next-k-Step</h2>
+          <div class="content has-text-justified">
+            <p>
+              To analyze model behavior under increased reasoning depth, we introduce <strong>Next-k-Step</strong>, a fine-grained extension of our sequential reasoning tasks. It requires predicting the correct assembly result after <em>k</em> consecutive steps. We evaluate performance as <em>k</em> increases (1–5), with and without <strong>Chain-of-Thought (CoT)</strong> prompting. The results below reveal that most models suffer from performance degradation with more steps, and CoT prompting does not consistently help, especially in long-range spatial reasoning.
+            </p>
+            </p>
+          </div>
           <div class="publication-img">
             <img id="architecture" src="./static/images/next-k-step_results.png"
               style="width:1000px; margin-top:10px;margin-bottom:10px;" />
@@ -306,26 +348,23 @@
   </div>
 </section>
 
-<!-- 添加自定义样式 -->
-<!-- 添加自定义样式 -->
 <style>
-  /* Grid 布局 */
   .image-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 每行两个 */
-    gap: 20px; /* 图片之间的间距 */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px; 
   }
 
-  /* 避免裁剪，保持图片比例 */
+
   .image-item img {
-    width: 100%; /* 宽度占满父容器 */
-    height: auto; /* 高度自动调整，保持比例 */
-    display: block; /* 防止底部出现空白间隙 */
+    width: 100%; 
+    height: auto; 
+    display: block; 
     margin-top: 10px;
     margin-bottom: 10px;
   }
 </style>
-<!-- /Results -->
+
 
 <!-- BibTeX -->
 <section class="section" id="BibTeX">
