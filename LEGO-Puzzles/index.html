@@ -142,7 +142,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            <strong>Multi-step spatial reasoning</strong> entails understanding and reasoning about spatial relationships across multiple sequential steps, which is crucial for tackling complex real-world applications, such as robotic manipulation, autonomous navigation, and automated assembly. To assess how well current Multimodal Large Language Models (MLLMs) have acquired this fundamental capability, we introduce <strong>LEGO-Puzzles</strong>, a scalable benchmark designed to evaluate both <strong>spatial understanding</strong> and <strong>sequential reasoning</strong> in MLLMs through LEGO-based tasks. LEGO-Puzzles consists of 1,100 carefully curated visual question-answering (VQA) samples spanning 11 distinct tasks, ranging from basic spatial understanding to complex multi-step reasoning. Based on LEGO-Puzzles, we conduct a comprehensive evaluation of state-of-the-art MLLMs and uncover significant limitations in their spatial reasoning capabilities: even the most powerful MLLMs can answer only about half of the test cases, whereas human participants achieve over 90% accuracy. In addition to VQA tasks, we evaluate MLLMs' abilities to generate LEGO images following assembly illustrations. Our experiments show that only Gemini-2.0-Flash and GPT-4o exhibit a limited ability to follow these instructions, while other MLLMs either replicate the input image or generate completely irrelevant outputs. Overall, LEGO-Puzzles exposes critical deficiencies in existing MLLMs' spatial understanding and sequential reasoning capabilities, and underscores the need for further advancements in multimodal spatial reasoning.
+            <strong>Multi-step spatial reasoning</strong> entails understanding and reasoning about spatial relationships across multiple sequential steps, which is crucial for tackling complex real-world applications, such as robotic manipulation, autonomous navigation, and automated assembly. To assess how well current Multimodal Large Language Models (MLLMs) have acquired this fundamental capability, we introduce <strong>LEGO-Puzzles</strong>, a scalable benchmark designed to evaluate both <strong>spatial understanding</strong> and <strong>sequential reasoning</strong> in MLLMs through LEGO-based tasks. LEGO-Puzzles consists of 1,100 carefully curated visual question-answering (VQA) samples spanning 11 distinct tasks, ranging from basic spatial understanding to complex multi-step reasoning. Based on LEGO-Puzzles, we conduct a comprehensive evaluation of 20 state-of-the-art MLLMs and uncover significant limitations in their spatial reasoning capabilities: even the most powerful MLLMs can answer only about half of the test cases, whereas human participants achieve over 90% accuracy. Furthermore, based on LEGO-Puzzzles, we design a generation task to investigate whether MLLMs can transfer their spatial understanding and reasoning abilities to image generation. Our experiments show that only GPT-4o and Gemini-2.0-Flash exhibit a limited ability to follow these instructions, while other MLLMs either replicate the input image or generate completely irrelevant outputs. Overall, LEGO-Puzzles exposes critical deficiencies in existing MLLMs' spatial understanding and sequential reasoning capabilities, and underscores the need for further advancements in multimodal spatial reasoning.
           </p>
         </div>
       </div>
@@ -272,12 +272,10 @@
           <h2 class="title is-3">Image Generation Results</h2>
           <div class="content has-text-justified">
             <p>
-              In addition to question-answering, LEGO-Puzzles also incorporates <strong>image generation tasks</strong> to evaluate whether MLLMs can visually interpret and simulate spatial transformations. We design <strong>5 generation tasks</strong> across two main categories: spatial understanding (<em>Rotation*</em>, <em>Multiview*</em>) and single-step sequential reasoning (<em>Position*</em>, <em>Dependency*</em>, <em>Next-Step*</em>). Each task consists of 20 questions, resulting in a total of 100 generation questions. Models are expected to generate an image of the intermediate LEGO configuration that reflects the given instruction. Because standard automated metrics fail to assess spatial fidelity and reasoning consistency, we rely on human evaluation to rate two aspects: <strong>appearance similarity</strong> and <strong>instruction following</strong>.
+              Furthermore, based on LEGO-Puzzzles, we design <strong>mage generation tasks</strong> to investigate whether MLLMs can transfer their spatial understanding and reasoning abilities to image generation. We design <strong>5 generation tasks</strong> across two main categories: spatial understanding (<em>Rotation*</em>, <em>Multiview*</em>) and single-step sequential reasoning (<em>Position*</em>, <em>Dependency*</em>, <em>Next-Step*</em>). Each task consists of 20 questions, resulting in a total of 100 generation questions. Models are expected to generate an image of the intermediate LEGO configuration that reflects the given instruction. Because standard automated metrics fail to assess spatial fidelity and reasoning consistency, we rely on human evaluation to rate two aspects: <strong>appearance similarity</strong> and <strong>instruction following</strong>.
             </p>
             <p>
-              Only Gemini-2.0-Flash and GPT-4o show limited success, with most open-source models failing entirely to follow
-              instructions or preserve structural identity. This reveals critical limitations in spatially grounded image synthesis
-              within current MLLMs.
+              Only GPT-4o and Gemini-2.0-Flash show limited success, with most open-source models failing entirely to follow instructions or preserve structural identity. This reveals critical limitations in spatially grounded image synthesis within current MLLMs.
             </p>
           </div>
           <div class="publication-img">
@@ -289,11 +287,23 @@
       <p>
         <strong>Table 3. <u>Evaluation on <em>Generation</em>.</u></strong>
         We conduct human-based evaluation to assess the “Appearance” (App) and “Instruction Following” (IF) scores of
-        Gemini-2.0-Flash, GPT-4o, Emu2, GILL, and Anole, using a scoring scale from 0 to 3 for both dimensions.
+        GPT-4o, Gemini-2.0-Flash, GPT-4o* (referring to the version of GPT-4o released prior to March 6,
+        2025), Emu2, GILL, and Anole,
+        using a scoring scale from 0 to 3 for both dimensions.  
       </p>
+      <div class="publication-img">
+        <img id="architecture" src="./static/images/generation_case.png"
+          style="width:1000px; margin-top:10px;margin-bottom:10px;" />
+      </div>
+      <h2 class="subtitle has-text-centered">
+        Qualitative visual results for image generation tasks. <br>
+        <em style="display: block; font-size: 0.9em; margin-top: 0.5em;">
+          Note: The questions above are slightly simplified for clarity and brevity.
+        </em> </h2>
     </div>
   </div>
 </section>
+
 
 <section>
   <div class="container is-max-desktop" style="margin-top:-50px; margin-bottom:-50px;">
